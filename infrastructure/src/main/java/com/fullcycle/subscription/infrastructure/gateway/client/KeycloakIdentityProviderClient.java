@@ -32,7 +32,10 @@ public class KeycloakIdentityProviderClient implements IdentityProviderGateway {
         return Optional.ofNullable(headers)
                 .map(HttpHeaders::getLocation)
                 .map(URI::getPath)
-                .map(it -> List.of(it.split("/")).getLast())
+                .map(it -> {
+                    String[] parts = it.split("/");
+                    return parts[parts.length - 1];
+                })
                 .orElse(null);
     }
 }
