@@ -1,7 +1,6 @@
-package com.fullcycle.subscription.infrastructure.authentication;
+package com.fullcycle.subscription.infrastructure.authentication.clientcredentials;
 
 import com.fullcycle.subscription.infrastructure.JacksonTest;
-import com.fullcycle.subscription.infrastructure.authentication.KeycloakAuthenticationGateway.KeycloakAuthenticationResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import java.io.IOException;
 public class KeycloakAuthenticationResultTest {
 
     @Autowired
-    private JacksonTester<KeycloakAuthenticationResult> json;
+    private JacksonTester<KeycloakAuthenticationGateway.KeycloakAuthenticationResult> json;
 
     @Test
     public void testUnmarshall_shouldReadSnakeCaseResponse() throws IOException {
