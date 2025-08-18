@@ -2,13 +2,16 @@ package com.fullcycle.subscription.infrastructure;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.JwtRequestPostProcessor;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 
 public interface ApiTest {
 
-    JwtRequestPostProcessor ADMIN_JWT =
-            jwt().authorities(new SimpleGrantedAuthority("ROLE_CATALOGO_ADMIN"));
+
+    static JwtRequestPostProcessor admin(){
+            return jwt().authorities(new SimpleGrantedAuthority("ROLE_CATALOGO_ADMIN"));
+    }
 
     JwtRequestPostProcessor CATEGORIES_JWT =
             jwt().authorities(new SimpleGrantedAuthority("ROLE_CATALOGO_CATEGORIES"));
