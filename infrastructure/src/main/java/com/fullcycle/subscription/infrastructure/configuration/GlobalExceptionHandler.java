@@ -4,6 +4,7 @@ import com.fullcycle.subscription.domain.exceptions.DomainException;
 import com.fullcycle.subscription.domain.exceptions.InternalErrorException;
 import com.fullcycle.subscription.domain.validation.Error;
 import com.fullcycle.subscription.domain.validation.handler.Notification;
+import com.fullcycle.subscription.infrastructure.exceptions.ForbiddenException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -37,10 +38,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.internalServerError().body(new Error("", ex.getMessage()));
     }
 
-    //@ExceptionHandler(ForbiddenException.class)
-    //public ResponseEntity<?> handleForbiddenException(ForbiddenException ex) {
-    //    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new Error("Authentication", ex.getMessage()));
-    //}
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<?> handleForbiddenException(ForbiddenException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new Error("Authentication", ex.getMessage()));
+    }
 
     private List<Error> covertError(List<ObjectError> allErrors) {
         return allErrors.stream()
