@@ -1,6 +1,7 @@
-package com.fullcycle.subscription.infrastructure;
+package com.fullcycle.subscription;
 
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -11,6 +12,7 @@ import java.lang.annotation.*;
 @Inherited
 @ActiveProfiles("test-integration")
 @JsonTest
+@ExtendWith(TimeZoneSetup.class)
 @Tag("integrationTest")
 public @interface JacksonTest {
 }

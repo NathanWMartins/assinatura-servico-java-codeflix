@@ -1,8 +1,6 @@
 package com.fullcycle.subscription;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fullcycle.subscription.infrastructure.AbstractTest;
-import com.fullcycle.subscription.infrastructure.IntegrationTestConfiguration;
 import com.fullcycle.subscription.infrastructure.configuration.WebServerConfig;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +14,7 @@ import org.springframework.test.context.ActiveProfiles;
 @AutoConfigureWireMock(port = 0)
 @SpringBootTest(classes = {WebServerConfig.class, IntegrationTestConfiguration.class})
 @Tag("integrationTest")
-public abstract class AbstractRestClientTest extends AbstractTest {
+public abstract class AbstractRestClientTest extends AbstractTest{
 
     @Autowired
     private ObjectMapper objectMapper;

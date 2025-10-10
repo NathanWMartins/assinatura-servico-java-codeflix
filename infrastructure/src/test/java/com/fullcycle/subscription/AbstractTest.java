@@ -1,4 +1,4 @@
-package com.fullcycle.subscription.infrastructure;
+package com.fullcycle.subscription;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 

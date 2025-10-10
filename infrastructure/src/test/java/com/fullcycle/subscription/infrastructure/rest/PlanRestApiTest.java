@@ -4,7 +4,7 @@ import com.fullcycle.subscription.application.Presenter;
 import com.fullcycle.subscription.application.plan.ChangePlan;
 import com.fullcycle.subscription.application.plan.CreatePlan;
 import com.fullcycle.subscription.domain.plan.PlanId;
-import com.fullcycle.subscription.infrastructure.ControllerTest;
+import com.fullcycle.subscription.ControllerTest;
 import com.fullcycle.subscription.infrastructure.rest.controllers.PlanRestController;
 import com.fullcycle.subscription.infrastructure.rest.models.res.ChangePlanResponse;
 import com.fullcycle.subscription.infrastructure.rest.models.res.CreatePlanResponse;
@@ -17,7 +17,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static com.fullcycle.subscription.infrastructure.ApiTest.admin;
+import static com.fullcycle.subscription.ApiTest.admin;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;

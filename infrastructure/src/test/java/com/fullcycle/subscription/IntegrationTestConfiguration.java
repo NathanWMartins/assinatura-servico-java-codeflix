@@ -1,4 +1,4 @@
-package com.fullcycle.subscription.infrastructure;
+package com.fullcycle.subscription;
 
 
 // TODO: Create a test to remember that is required to create this bean

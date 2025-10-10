@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.node.TextNode;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -20,8 +21,16 @@ public enum Json {
         return INSTANCE.mapper.copy();
     }
 
+    public static byte[] writeValueAsBytes(final Object obj) {
+        return invoke(() -> INSTANCE.mapper.writeValueAsBytes(obj));
+    }
+
     public static String writeValueAsString(final Object obj) {
         return invoke(() -> INSTANCE.mapper.writeValueAsString(obj));
+    }
+
+    public static <T> T readValue(final byte[] json, final Class<T> clazz) {
+        return invoke(() -> INSTANCE.mapper.readValue(json, clazz));
     }
 
     public static <T> T readValue(final String json, final Class<T> clazz) {
@@ -30,6 +39,17 @@ public enum Json {
 
     public static <T> T readValue(final String json, final TypeReference<T> clazz) {
         return invoke(() -> INSTANCE.mapper.readValue(json, clazz));
+    }
+
+    public static <T> T readTree(final String json, final Class<T> clazz) {
+        return invoke(() -> {
+            var val = INSTANCE.mapper.readTree(json);
+            if (val instanceof TextNode) {
+                return readTree(val.asText(), clazz);
+            } else {
+                return INSTANCE.mapper.convertValue(val, clazz);
+            }
+        });
     }
 
     private final ObjectMapper mapper = new Jackson2ObjectMapperBuilder()
@@ -43,7 +63,6 @@ public enum Json {
             .modules(new JavaTimeModule(), new Jdk8Module(), new BlackbirdModule())
             .propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
             .build();
-
 
     private static <T> T invoke(final Callable<T> callable) {
         try {

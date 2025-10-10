@@ -7,7 +7,7 @@ import com.fullcycle.subscription.application.subscription.CreateSubscription;
 import com.fullcycle.subscription.domain.payment.Transaction;
 import com.fullcycle.subscription.domain.subscription.SubscriptionId;
 import com.fullcycle.subscription.domain.subscription.status.CanceledSubscriptionStatus;
-import com.fullcycle.subscription.infrastructure.ControllerTest;
+import com.fullcycle.subscription.ControllerTest;
 import com.fullcycle.subscription.infrastructure.rest.controllers.SubscriptionRestController;
 import com.fullcycle.subscription.infrastructure.rest.models.res.CancelSubscriptionResponse;
 import com.fullcycle.subscription.infrastructure.rest.models.res.ChargeSubscriptionResponse;
@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 
-import static com.fullcycle.subscription.infrastructure.ApiTest.admin;
+import static com.fullcycle.subscription.ApiTest.admin;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
